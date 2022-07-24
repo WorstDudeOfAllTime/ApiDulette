@@ -1,87 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import {
+  useQuery,
+} from '@tanstack/react-query'
+import { fetchRandomApis } from './apis';
 
 function App() {
-  const [clicked, setClicked] = useState(false);
-  const [apiOne, setApiOne] = useState('');
-  const [apiTwo, setApiTwo] = useState('');
+  const { data: apis, isLoading, isError, refetch } = useQuery(['apis'], fetchRandomApis);
 
-  const apiArray = [
-    'Animals',
-    'Anime',
-    'Anti-Malware',
-    'Art & Design',
-    'Books',
-    'Business',
-    'Calendar',
-    'Cloud Storage & File Sharing',
-    'Continuous Integration',
-    'Cryptocurrency',
-    'Currency Exchange',
-    'Data Validation',
-    'Development',
-    'Dictionaries',
-    'Disasters',
-    'Documents & Productivity',
-    'Environment',
-    'Events',
-    'Finance',
-    'Food & Drink',
-    'Fraud Prevention',
-    'Games & Comics',
-    'Geocoding',
-    'Government',
-    'Health',
-    'Jobs',
-    'Machine Learning',
-    'Music',
-    'News',
-    'Open Data',
-    'Open Source Projects',
-    'Patent',
-    'Personality',
-    'Photography',
-    'Science & Math',
-    'Security',
-    'Shopping',
-    'Social',
-    'Sports & Fitness',
-    'Test Data',
-    'Text Analysis',
-    'Tracking',
-    'Transportation',
-    'URL Shorteners',
-    'Vehicle',
-    'Video',
-    'Weather',
-  ];
+  if (isLoading) {
+    return null;
+  }
 
-  function apiGen(array) {
-    return array[Math.floor(Math.random() * array.length)];
+  if (isError) {
+    return <p>Error!</p>;
   }
 
   return (
     <div className="App">
       <div className="display-box">
         <h1>API DULETTE!</h1>
-        {!clicked ? (
-          <button
-            className="btn-gen"
-            onClick={() => {
-              setApiOne(apiGen(apiArray));
-              setApiTwo(apiGen(apiArray));
-              setClicked(true);
-            }}
-          >
-            Generate your API Combo!
-          </button>
-        ) : (
-          <div className='api-box'>
-            <h2 className='api-dis'>{apiOne}</h2>
-            <h2 className='api-dis'>{apiTwo}</h2>
-          </div>
-        )}
+
+        <button
+          className="btn-gen"
+          onClick={() => refetch()}
+        >
+          Generate your API Combo!
+        </button>
+
+        <div className='api-box'>
+          {apis.map(api => (
+            <a href={api.Link} target="blank" className='api-dis'>{api.API}</a>
+          ))}
+        </div>
+
       </div>
     </div>
   );
