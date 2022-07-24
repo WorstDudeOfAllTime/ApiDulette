@@ -50,12 +50,17 @@
   font-size: 20px;
   text-align: center;
 }
-.api-dis{
+.api-box a{
+  text-decoration: none;
+  color: white;
+}
+.box-half {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
-  width: 50%;
+  height: 100%;
+  width: 45%;
+  font-size: 15px;
 }
 
 @keyframes boxPulse {

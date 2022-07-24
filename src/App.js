@@ -12,6 +12,8 @@ function App() {
     'Anime',
     'Anti-Malware',
     'Art & Design',
+    'Authentication & Authorization',
+    'Blockchain',
     'Books',
     'Business',
     'Calendar',
@@ -22,13 +24,12 @@ function App() {
     'Data Validation',
     'Development',
     'Dictionaries',
-    'Disasters',
     'Documents & Productivity',
+    'Email',
     'Environment',
     'Events',
     'Finance',
     'Food & Drink',
-    'Fraud Prevention',
     'Games & Comics',
     'Geocoding',
     'Government',
@@ -60,6 +61,9 @@ function App() {
   function apiGen(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
+  function stringCorrect(string) {
+    return string.replaceAll(' ', '-').replaceAll('&', '');
+  }
 
   return (
     <div className="App">
@@ -77,9 +81,27 @@ function App() {
             Generate your API Combo!
           </button>
         ) : (
-          <div className='api-box'>
-            <h2 className='api-dis'>{apiOne}</h2>
-            <h2 className='api-dis'>{apiTwo}</h2>
+          <div className="api-box">
+            <div className="box-half">
+              <a
+                href={`https://github.com/public-apis/public-apis#${stringCorrect(
+                  apiOne
+                )}`}
+                target="_blank"
+              >
+                <h2 className="api-dis">{apiOne}</h2>
+              </a>
+            </div>
+            <div className="box-half">
+              <a
+                href={`https://github.com/public-apis/public-apis#${stringCorrect(
+                  apiTwo
+                )}`}
+                target="_blank"
+              >
+                <h2 className="api-dis">{apiTwo}</h2>
+              </a>
+            </div>
           </div>
         )}
       </div>
