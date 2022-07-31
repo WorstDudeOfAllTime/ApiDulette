@@ -89,7 +89,9 @@ function App() {
                 )}`}
                 target="_blank"
               >
-                <h2 className="api-dis">{apiOne}</h2>
+                <button className="btn-api">
+                  <h2 className="api-dis">{apiOne}</h2>
+                </button>
               </a>
             </div>
             <div className="box-half">
@@ -99,7 +101,9 @@ function App() {
                 )}`}
                 target="_blank"
               >
-                <h2 className="api-dis">{apiTwo}</h2>
+                <button className="btn-api">
+                  <h2 className="api-dis">{apiTwo}</h2>
+                </button>
               </a>
             </div>
           </div>
