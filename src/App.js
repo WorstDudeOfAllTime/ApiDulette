@@ -108,6 +108,20 @@ function App() {
             </div>
           </div>
         )}
+        {clicked && (
+          <div style={{ width: '100%' }}>
+            <button
+              className="btn-gen-v2"
+              onClick={() => {
+                setApiOne(apiGen(apiArray));
+                setApiTwo(apiGen(apiArray));
+                setClicked(true);
+              }}
+            >
+              Generate another Combo!
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
